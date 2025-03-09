@@ -1,5 +1,7 @@
-﻿namespace LibraryManagementSystem.Domain;
+﻿using LibraryManagementSystem.Domain.Entity;
 
-public class BorrowableBook
+namespace LibraryManagementSystem.Domain;
+
+public class BorrowableBook : BaseEntity
 {
 }

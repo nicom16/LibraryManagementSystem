@@ -1,4 +1,5 @@
-﻿using LibraryManagementSystem.Domain.Entity;
+﻿using System.Collections.ObjectModel;
+using LibraryManagementSystem.Domain.Entity;
 
 namespace LibraryManagementSystem.Domain;
 
@@ -6,9 +7,10 @@ public class BorrowableBook : BaseEntity
 {
     private List<Borrow> _activeBorrows;
 
-    public BorrowableBook(List<Borrow> activeBorrows)
+    public BorrowableBook()
     {
-        _activeBorrows = activeBorrows;
+        Id = Guid.NewGuid();
+        _activeBorrows = new List<Borrow>();
     }
 
     public void AddBorrow(Borrow borrow)
@@ -16,8 +18,7 @@ public class BorrowableBook : BaseEntity
         _activeBorrows.Add(borrow);
     }
 
-    public int CountActiveBorrows()
-    {
-        return _activeBorrows.Count;
-    }
+    public int CountActiveBorrows() => _activeBorrows.Count;
+    
+    public ReadOnlyCollection<Borrow> GetActiveBorrows() => _activeBorrows.AsReadOnly();
 }

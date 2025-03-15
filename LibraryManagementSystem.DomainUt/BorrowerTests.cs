@@ -11,13 +11,23 @@ public class BorrowerTests
     [Test]
     public void OnValidRequest_CanBorrowBook()
     {
-        _borrower = new Borrower(id: Guid.NewGuid(), borrowedBooks: new List<Guid>());
-        _borrowableBook = new BorrowableBook(activeBorrows: new List<Borrow>());
+        // SetUp
+        _borrower = new Borrower();
+        _borrowableBook = new BorrowableBook();
         
-        int countActiveBorrowsBeforeBorrow = _borrowableBook.CountActiveBorrows();
+        int bookActiveBorrows = _borrowableBook.CountActiveBorrows();
+        int borrowerActiveBorrows = _borrower.CountActiveBorrows();
+        
+        // Act
         _borrow = _borrower.BorrowBook(_borrowableBook);
         
+        // Assert
         Assert.True(_borrow is not null);
-        Assert.True(_borrowableBook.CountActiveBorrows() == countActiveBorrowsBeforeBorrow + 1);
+        
+        Assert.True(_borrowableBook.CountActiveBorrows() == bookActiveBorrows + 1);
+        Assert.True(_borrowableBook.GetActiveBorrows().Contains(_borrow));
+        
+        Assert.True(_borrower.CountActiveBorrows() == borrowerActiveBorrows + 1);
+        Assert.True(_borrower.GetActiveBorrows().Contains(_borrow));
     }
 }

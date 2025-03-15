@@ -1,21 +1,27 @@
+using System.Collections.ObjectModel;
 using LibraryManagementSystem.Domain.Entity;
 
 namespace LibraryManagementSystem.Domain;
 
 public class Borrower : BaseEntity
 {
-    private List<Guid> _borrowedBooks;
-
-    public Borrower(Guid id, List<Guid> borrowedBooks)
+    private List<Borrow> _activeBorrows;
+    
+    public Borrower()
     {
-        Id = id;
-        _borrowedBooks = borrowedBooks;
+        Id = Guid.NewGuid();
+        _activeBorrows = new List<Borrow>();
     }
 
     public Borrow BorrowBook(BorrowableBook borrowableBook)
     {
-        Borrow borrow = new Borrow(this.Id, borrowableBook.Id, DateTime.Now);
+        Borrow borrow = new Borrow(borrowerId: Id, borrowedBookId: borrowableBook.Id);
         borrowableBook.AddBorrow(borrow);
+        _activeBorrows.Add(borrow);
         return borrow;
     }
+    
+    public int CountActiveBorrows() => _activeBorrows.Count;
+    
+    public ReadOnlyCollection<Borrow> GetActiveBorrows() => _activeBorrows.AsReadOnly();
 }

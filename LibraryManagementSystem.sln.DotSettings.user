@@ -1,6 +1,0 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=973e64fe_002D9420_002D4789_002D8491_002D6eded87e0395/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="OnValidRequest_CanBorrowBook" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::02E0D739-F178-4E2C-BFF0-863F9A5AD7E3::net8.0::LibraryManagementSystem.DomainUt.BorrowerTests.OnValidRequest_CanBorrowBook&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

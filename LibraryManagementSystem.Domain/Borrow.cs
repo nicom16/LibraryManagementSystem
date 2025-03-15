@@ -8,10 +8,11 @@ public class Borrow : BaseEntity
     private Guid _borrowedBookId;
     private DateTime _borrowDate;
 
-    public Borrow(Guid borrowerId, Guid borrowedBookId, DateTime borrowDate)
+    public Borrow(Guid borrowerId, Guid borrowedBookId)
     {
+        Id = Guid.NewGuid();
         _borrowerId = borrowerId;
         _borrowedBookId = borrowedBookId;
-        _borrowDate = borrowDate;
+        _borrowDate = DateTime.Now;
     }
 }

@@ -12,7 +12,13 @@ public class BorrowerTests
     public void OnValidRequest_CanBorrowBook()
     {
         // SetUp
-        _borrower = new Borrower();
+        BorrowerCategory borrowerCategory = new BorrowerCategory()
+        {
+            Type = BorrowerCategoryType.Guest,
+            DaysPerBorrow = 10,
+            MaxBorrows = 5
+        };
+        _borrower = new Borrower(borrowerCategory);
         _borrowableBook = new BorrowableBook();
         
         int bookActiveBorrows = _borrowableBook.CountActiveBorrows();

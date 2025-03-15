@@ -6,11 +6,13 @@ namespace LibraryManagementSystem.Domain;
 public class Borrower : BaseEntity
 {
     private List<Borrow> _activeBorrows;
+    private BorrowerCategory _borrowerCategory;
     
-    public Borrower()
+    public Borrower(BorrowerCategory borrowerCategory)
     {
         Id = Guid.NewGuid();
         _activeBorrows = new List<Borrow>();
+        _borrowerCategory = borrowerCategory;
     }
 
     public Borrow BorrowBook(BorrowableBook borrowableBook)

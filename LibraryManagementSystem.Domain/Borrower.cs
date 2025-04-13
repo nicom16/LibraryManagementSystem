@@ -19,6 +19,9 @@ public class Borrower : BaseEntity
 
     public Borrow BorrowBook(BorrowableBook borrowableBook)
     {
+        if (_activeBorrowsCount >= _borrowerCategory.MaxBorrows)
+            throw new InvalidOperationException("Cannot borrow more than max borrows!");
+        
         Borrow borrow = new Borrow(borrowerId: Id, borrowedBookId: borrowableBook.Id);
         borrowableBook.AddBorrow(borrow);
         _newBorrows.Add(borrow);

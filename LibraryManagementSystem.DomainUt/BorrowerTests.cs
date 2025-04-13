@@ -8,18 +8,19 @@ public class BorrowerTests
     private BorrowableBook _borrowableBook;
     private Borrow _borrow;
 
+    private readonly BorrowerCategory _guestBorrowerCategory = new()
+    {
+        Type = BorrowerCategoryType.Guest,
+        DaysPerBorrow = 10,
+        MaxBorrows = Constants.MAX_BORROWS
+    };
+
     [Test]
     public void OnValidRequest_CanBorrowBook()
     {
         // SetUp
-        BorrowerCategory borrowerCategory = new BorrowerCategory()
-        {
-            Type = BorrowerCategoryType.Guest,
-            DaysPerBorrow = 10,
-            MaxBorrows = 5
-        };
         int borrowerActiveBorrows = 3;
-        _borrower = new Borrower(id: Guid.NewGuid(), borrowerCategory, borrowerActiveBorrows);
+        _borrower = new Borrower(id: Guid.NewGuid(), _guestBorrowerCategory, borrowerActiveBorrows);
         
         int bookActiveBorrows = 1;
         _borrowableBook = new BorrowableBook(id: Guid.NewGuid(), bookActiveBorrows);
@@ -35,5 +36,19 @@ public class BorrowerTests
         
         Assert.True(_borrower.CountActiveBorrows() == borrowerActiveBorrows + 1);
         Assert.True(_borrower.GetActiveBorrows().Contains(_borrow));
+    }
+    
+    [Test]
+    public void OnBorrowCountOverLimit_ThrowsException()
+    {
+        // SetUp
+        int borrowerActiveBorrows = Constants.MAX_BORROWS;
+        _borrower = new Borrower(id: Guid.NewGuid(), _guestBorrowerCategory, borrowerActiveBorrows);
+        
+        int bookActiveBorrows = 1;
+        _borrowableBook = new BorrowableBook(id: Guid.NewGuid(), bookActiveBorrows);
+        
+        // Assert
+        Assert.Throws<InvalidOperationException>(() => _borrower.BorrowBook(_borrowableBook));
     }
 }

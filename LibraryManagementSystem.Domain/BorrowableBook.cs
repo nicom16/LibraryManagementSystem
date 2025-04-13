@@ -5,20 +5,22 @@ namespace LibraryManagementSystem.Domain;
 
 public class BorrowableBook : BaseEntity
 {
-    private List<Borrow> _activeBorrows;
+    private readonly int _activeBorrowsCount;
+    private readonly List<Borrow> _newBorrows;
 
-    public BorrowableBook()
+    public BorrowableBook(Guid id, int activeBorrowsCount)
     {
-        Id = Guid.NewGuid();
-        _activeBorrows = new List<Borrow>();
+        Id = id;
+        _activeBorrowsCount = activeBorrowsCount;
+        _newBorrows = new List<Borrow>();
     }
 
     public void AddBorrow(Borrow borrow)
     {
-        _activeBorrows.Add(borrow);
+        _newBorrows.Add(borrow);
     }
 
-    public int CountActiveBorrows() => _activeBorrows.Count;
+    public int CountActiveBorrows() => _newBorrows.Count + _activeBorrowsCount;
     
-    public ReadOnlyCollection<Borrow> GetActiveBorrows() => _activeBorrows.AsReadOnly();
+    public ReadOnlyCollection<Borrow> GetActiveBorrows() => _newBorrows.AsReadOnly();
 }

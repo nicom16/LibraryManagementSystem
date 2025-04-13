@@ -18,11 +18,11 @@ public class BorrowerTests
             DaysPerBorrow = 10,
             MaxBorrows = 5
         };
-        _borrower = new Borrower(borrowerCategory);
-        _borrowableBook = new BorrowableBook();
+        int borrowerActiveBorrows = 3;
+        _borrower = new Borrower(id: Guid.NewGuid(), borrowerCategory, borrowerActiveBorrows);
         
-        int bookActiveBorrows = _borrowableBook.CountActiveBorrows();
-        int borrowerActiveBorrows = _borrower.CountActiveBorrows();
+        int bookActiveBorrows = 1;
+        _borrowableBook = new BorrowableBook(id: Guid.NewGuid(), bookActiveBorrows);
         
         // Act
         _borrow = _borrower.BorrowBook(_borrowableBook);

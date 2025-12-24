@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagementSystem.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagementSystem.Domain", "LibraryManagementSystem.Domain\LibraryManagementSystem.Domain.csproj", "{58B6725A-9706-4185-9AA4-D202B4EB4574}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagementSystem.Persistence", "LibraryManagementSystem.Persistence\LibraryManagementSystem.Persistence.csproj", "{4704CE37-9D4F-4CC9-BFDF-FC66491A8655}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,7 @@ Global
 		{0D9F8091-8F94-44E3-8032-B81773C8FF63} = {24C80710-B92C-441C-8AE3-5C13456C2EB7}
 		{02E0D739-F178-4E2C-BFF0-863F9A5AD7E3} = {A3BCD164-F39A-484F-8CC0-6819DBB99BE0}
 		{58B6725A-9706-4185-9AA4-D202B4EB4574} = {A3BCD164-F39A-484F-8CC0-6819DBB99BE0}
+		{4704CE37-9D4F-4CC9-BFDF-FC66491A8655} = {D3996170-A13C-47AF-846B-93E05FD29AD0}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{6129839E-82C5-47A0-98C8-C25B4C3913B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +45,9 @@ Global
 		{58B6725A-9706-4185-9AA4-D202B4EB4574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58B6725A-9706-4185-9AA4-D202B4EB4574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58B6725A-9706-4185-9AA4-D202B4EB4574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4704CE37-9D4F-4CC9-BFDF-FC66491A8655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4704CE37-9D4F-4CC9-BFDF-FC66491A8655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4704CE37-9D4F-4CC9-BFDF-FC66491A8655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4704CE37-9D4F-4CC9-BFDF-FC66491A8655}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

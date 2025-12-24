@@ -8,9 +8,11 @@ public class BorrowableBook : BaseEntity
     private readonly int _activeBorrowsCount;
     private readonly List<Borrow> _newBorrows;
 
+    protected BorrowableBook() { }
+    
     public BorrowableBook(Guid id, int activeBorrowsCount)
     {
-        Id = id;
+        Guid = id;
         _activeBorrowsCount = activeBorrowsCount;
         _newBorrows = new List<Borrow>();
     }

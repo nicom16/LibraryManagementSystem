@@ -20,7 +20,7 @@ public class BorrowerTests
     {
         // SetUp
         int borrowerActiveBorrows = 3;
-        _borrower = new Borrower(id: Guid.NewGuid(), _guestBorrowerCategory, borrowerActiveBorrows);
+        _borrower = TestsHelpers.CreateBorrowerByReflection(_guestBorrowerCategory, borrowerActiveBorrows);
         
         int bookActiveBorrows = 1;
         _borrowableBook = new BorrowableBook(id: Guid.NewGuid(), bookActiveBorrows);
@@ -43,7 +43,7 @@ public class BorrowerTests
     {
         // SetUp
         int borrowerActiveBorrows = Constants.MAX_BORROWS;
-        _borrower = new Borrower(id: Guid.NewGuid(), _guestBorrowerCategory, borrowerActiveBorrows);
+        _borrower = TestsHelpers.CreateBorrowerByReflection(_guestBorrowerCategory, borrowerActiveBorrows);
         
         int bookActiveBorrows = 1;
         _borrowableBook = new BorrowableBook(id: Guid.NewGuid(), bookActiveBorrows);

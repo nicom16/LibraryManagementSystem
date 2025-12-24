@@ -4,15 +4,17 @@ namespace LibraryManagementSystem.Domain;
 
 public class Borrow : BaseEntity
 {
-    private Guid _borrowerId;
-    private Guid _borrowedBookId;
-    private DateTime _borrowDate;
-
-    public Borrow(Guid borrowerId, Guid borrowedBookId)
+    public Borrower Borrower { get; protected set; }
+    public BorrowableBook BorrowedBook { get; protected set; }
+    public DateTime StartDate { get; protected set; }
+    
+    protected Borrow() { }
+    
+    public Borrow(Borrower borrower, BorrowableBook borrowedBook)
     {
-        Id = Guid.NewGuid();
-        _borrowerId = borrowerId;
-        _borrowedBookId = borrowedBookId;
-        _borrowDate = DateTime.Now;
+        Guid = Guid.NewGuid();
+        Borrower = borrower;
+        BorrowedBook = borrowedBook;
+        StartDate = DateTime.Now;
     }
 }

@@ -5,30 +5,28 @@ namespace LibraryManagementSystem.Domain;
 
 public class Borrower : BaseEntity
 {
-    private List<Borrow> _newBorrows;
-    private BorrowerCategory _borrowerCategory;
-    private readonly int _activeBorrowsCount;
+    public IList<Borrow> ActiveBorrows { get; protected set; }
+    public BorrowerCategory Category { get; protected set; }
+    public int ActiveBorrowsCount { get; protected set; }
 
-    public Borrower(Guid id, BorrowerCategory borrowerCategory, int activeBorrowsCount)
+    protected Borrower()
     {
-        Id = id;
-        _newBorrows = new List<Borrow>();
-        _borrowerCategory = borrowerCategory;
-        _activeBorrowsCount = activeBorrowsCount;
+        ActiveBorrows = new List<Borrow>();
     }
-
+    
     public Borrow BorrowBook(BorrowableBook borrowableBook)
     {
-        if (_activeBorrowsCount >= _borrowerCategory.MaxBorrows)
+        if (ActiveBorrowsCount >= Category.MaxBorrows)
             throw new InvalidOperationException("Cannot borrow more than max borrows!");
         
-        Borrow borrow = new Borrow(borrowerId: Id, borrowedBookId: borrowableBook.Id);
+        Borrow borrow = new Borrow(borrower: this, borrowedBook: borrowableBook);
         borrowableBook.AddBorrow(borrow);
-        _newBorrows.Add(borrow);
+        ActiveBorrows.Add(borrow);
+        
         return borrow;
     }
     
-    public int CountActiveBorrows() => _newBorrows.Count + _activeBorrowsCount;
+    public int CountActiveBorrows() => ActiveBorrows.Count;
     
-    public ReadOnlyCollection<Borrow> GetActiveBorrows() => _newBorrows.AsReadOnly();
+    public ReadOnlyCollection<Borrow> GetActiveBorrows() => ActiveBorrows.AsReadOnly();
 }
